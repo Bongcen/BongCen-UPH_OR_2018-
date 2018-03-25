@@ -2,14 +2,14 @@ library(lpSolveAPI)
 # The first step is to create a model, which takes as arguments the
 # number of constraints in your model, and the number of decision
 # variables in your model.
-air = make.lp(4,2)
+air = make.lp(6,2)
 # Now we need to set up the constraints and objective. The best way to 
 # do this using the lpSolveAPI package is by viewing the constraints in
 # a matrix format.
-set.column(air, 1, c(0.5, 0.6, 1, 0))
-set.column(air, 2, c(0.5, 0.4, 0, 1))
-set.constr.type(air, c("<=","<=","<="))
-set.rhs(air, c(150, 145, 30<=c<=150, 40<=c<=200))
+set.column(air, 1, c(0.5, 0.6, 1, 1, 0, 0))
+set.column(air, 2, c(0.5, 0.4, 0, 0, 1, 1))
+set.constr.type(air, c("<=","<=",">=","<=",">=","<="))
+set.rhs(air, c(150, 145, 30, 150, 40, 200))
 
 set.objfn(air, c(8, 10))
 
